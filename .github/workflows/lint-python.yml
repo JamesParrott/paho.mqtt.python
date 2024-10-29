@@ -1,9 +1,9 @@
 name: lint_python
 on:
   pull_request:
-    branches: [master]
+    branches: [master, enum_monkey_patch_for_micropython]
   push:
-    branches: [master]
+    branches: [master, enum_monkey_patch_for_micropython]
 jobs:
   lint_python:
     runs-on: ubuntu-latest

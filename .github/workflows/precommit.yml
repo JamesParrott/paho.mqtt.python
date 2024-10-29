@@ -4,9 +4,9 @@
 name: pre-commit
 on:
   pull_request:
-    branches: [master]
+    branches: [master, enum_monkey_patch_for_micropython]
   push:
-    branches: [master]
+    branches: [master, enum_monkey_patch_for_micropython]
 jobs:
   pre-commit:
     runs-on: ubuntu-latest
