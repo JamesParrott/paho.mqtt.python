@@ -772,7 +772,7 @@ class Client:
             raise ValueError(
                 "Unsupported callback API version: version 2.0 added a callback_api_version, see docs/migrations.rst for details"
             )
-        if self._callback_api_version not in CallbackAPIVersion:
+        if self._callback_api_version not in [CallbackAPIVersion.VERSION1, CallbackAPIVersion.VERSION2]:
             raise ValueError("Unsupported callback API version")
 
         self._clean_start: int = MQTT_CLEAN_START_FIRST_ONLY

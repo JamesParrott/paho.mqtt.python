@@ -1,7 +1,7 @@
 try:
     import enum
 except ImportError:
-    from . import simpler_enum as enum
+    import .simpler_enum as enum
 
 class MQTTErrorCode(enum.IntEnum):
     MQTT_ERR_AGAIN = -1

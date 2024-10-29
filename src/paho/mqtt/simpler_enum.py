@@ -1,9 +1,10 @@
-
-class IntEnum:
+class SimplerEnum:
     pass
 
-class Enum:
+class Enum(SimplerEnum):
     pass
+
+IntEnum = Enum
 
 class _Auto:
     def __init__(self):
