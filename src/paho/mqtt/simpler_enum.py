@@ -1,7 +1,7 @@
 
 class IntEnum:
     pass
-    
+
 class Enum:
     pass
 
