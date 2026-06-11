@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [master]
   push:
-    branches: [master, fix_lint]
+    branches: [master, Rebased_PR_902]
 jobs:
   lint_python:
     runs-on: ubuntu-latest
