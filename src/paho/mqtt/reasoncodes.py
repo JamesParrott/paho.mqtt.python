@@ -17,6 +17,7 @@
 import functools
 import warnings
 from typing import Any
+from types import MappingProxyType
 
 from .packettypes import PacketTypes
 
@@ -30,7 +31,7 @@ class ReasonCode:
 
     """
 
-    names = {
+    names = MappingProxyType({
         0: {
             "Success": [PacketTypes.CONNACK, PacketTypes.PUBACK, PacketTypes.PUBREC, PacketTypes.PUBREL, PacketTypes.PUBCOMP, PacketTypes.UNSUBACK, PacketTypes.AUTH],
             "Normal disconnection": [PacketTypes.DISCONNECT],
@@ -93,7 +94,7 @@ class ReasonCode:
         160: {"Maximum connect time": [PacketTypes.DISCONNECT]},
         161: {"Subscription identifiers not supported": [PacketTypes.SUBACK, PacketTypes.DISCONNECT]},
         162: {"Wildcard subscription not supported": [PacketTypes.SUBACK, PacketTypes.DISCONNECT]},
-    }
+    })
 
     def __init__(self, packetType: int, aName: str = "Success", identifier: int = -1):
         """
