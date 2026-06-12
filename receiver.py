@@ -19,6 +19,6 @@ client.on_connect = on_connect
 client.on_message = on_message
 client.on_disconnect = on_disconnect
 
-client.connect("localhost", 1883, keepalive=30)
-# client._keepalive = 30
+# client.connect("localhost", 1883, keepalive=30)
+client.connect("192.168.137.1", 1883, keepalive=4)
 client.loop_forever()
