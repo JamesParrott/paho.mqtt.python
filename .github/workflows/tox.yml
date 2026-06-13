@@ -3,7 +3,7 @@ on:
   pull_request:
     branches: [master]
   push:
-    branches: [master]
+    branches: [master, Issue_914_100MB]
 jobs:
   tox:
     strategy:
