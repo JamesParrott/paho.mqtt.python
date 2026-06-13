@@ -2100,7 +2100,7 @@ class Client:
             rc = self._packet_read()
             if rc > 0:
                 return self._loop_rc_handle(rc)
-            elif rc == MQTTErrorCode.MQTT_ERR_AGAIN: # MQTT_ERR_AGAIN== -1
+            elif rc == MQTTErrorCode.MQTT_ERR_AGAIN:
                 return MQTTErrorCode.MQTT_ERR_SUCCESS
         return MQTTErrorCode.MQTT_ERR_SUCCESS
 
@@ -3268,7 +3268,7 @@ class Client:
             last_msg_out = self._last_msg_out
             last_msg_in = self._last_msg_in
 
-        if self._sock is not None and (now - last_msg_out >= self._keepalive and now - last_msg_in >= self._keepalive):
+        if self._sock is not None and (now - last_msg_out >= self._keepalive or now - last_msg_in >= self._keepalive):
             if self._state == _ConnectionState.MQTT_CS_CONNECTED and self._ping_t == 0:
                 try:
                     self._send_pingreq()
