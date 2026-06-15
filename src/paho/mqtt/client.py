@@ -17,6 +17,12 @@ This is an MQTT client module. MQTT is a lightweight pub/sub messaging
 protocol that is easy to implement and suitable for low powered devices.
 """
 from __future__ import annotations
+import inspect
+
+def caller_name():
+    frame = inspect.currentframe()
+    caller_frame = frame.f_back.f_back
+    return caller_frame.f_code.co_name
 
 import base64
 import collections
@@ -2098,6 +2104,7 @@ class Client:
             if self._sock is None:
                 return MQTTErrorCode.MQTT_ERR_NO_CONN
             rc = self._packet_read()
+            print(f"In loop_read, got: rc={int(rc)}, {self._last_msg_in}, {self._ping_t=}")
             if rc > 0:
                 return self._loop_rc_handle(rc)
             elif rc == MQTTErrorCode.MQTT_ERR_AGAIN:
@@ -3037,6 +3044,7 @@ class Client:
         self,
         rc: MQTTErrorCode,
     ) -> MQTTErrorCode:
+        print(f"Handling/exiting: {rc}")
         if rc:
             self._sock_close()
 
@@ -3268,7 +3276,7 @@ class Client:
             last_msg_out = self._last_msg_out
             last_msg_in = self._last_msg_in
 
-        if self._sock is not None and (now - last_msg_out >= self._keepalive or now - last_msg_in >= self._keepalive):
+        if self._sock is not None and (now - last_msg_out >= self._keepalive and now - last_msg_in >= self._keepalive):
             if self._state == _ConnectionState.MQTT_CS_CONNECTED and self._ping_t == 0:
                 try:
                     self._send_pingreq()
@@ -4349,6 +4357,7 @@ class Client:
         reason: ReasonCode | None = None,
         properties: Properties | None = None,
     ) -> None:
+        print(f"_do_on_disconnect called by: {caller_name()}")
         with self._callback_mutex:
             on_disconnect = self.on_disconnect
 
