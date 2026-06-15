@@ -3276,7 +3276,7 @@ class Client:
             last_msg_out = self._last_msg_out
             last_msg_in = self._last_msg_in
 
-        if self._sock is not None and (now - last_msg_out >= self._keepalive and now - last_msg_in >= self._keepalive):
+        if self._sock is not None and (now - last_msg_out >= self._keepalive or now - last_msg_in >= self._keepalive):
             if self._state == _ConnectionState.MQTT_CS_CONNECTED and self._ping_t == 0:
                 try:
                     self._send_pingreq()
