@@ -18,7 +18,7 @@ from __future__ import annotations
 import functools
 import warnings
 from types import MappingProxyType
-from typing import Any, Union
+from typing import Any
 
 from .packettypes import PacketTypes
 
