@@ -17,7 +17,7 @@
 import functools
 import warnings
 from types import MappingProxyType
-from typing import Any
+from typing import Any, Union
 
 from .packettypes import PacketTypes
 
@@ -31,7 +31,7 @@ class ReasonCode:
 
     """
 
-    names: MappingProxyType | dict = MappingProxyType(
+    names: Union[MappingProxyType, dict] = MappingProxyType(
         {
             0: {
                 "Success": [
