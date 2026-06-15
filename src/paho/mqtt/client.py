@@ -2104,7 +2104,7 @@ class Client:
             if self._sock is None:
                 return MQTTErrorCode.MQTT_ERR_NO_CONN
             rc = self._packet_read()
-            print(f"In loop_read, got: rc={int(rc)}, {self._last_msg_in}, {self._ping_t=}")
+            print(f"In loop_read, got: rc={int(rc)}, {self._last_msg_in=}, {self._ping_t=}")
             if rc > 0:
                 return self._loop_rc_handle(rc)
             elif rc == MQTTErrorCode.MQTT_ERR_AGAIN:
