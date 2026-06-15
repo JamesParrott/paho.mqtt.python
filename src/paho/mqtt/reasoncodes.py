@@ -31,7 +31,7 @@ class ReasonCode:
 
     """
 
-    names = MappingProxyType(
+    names: MappingProxyType | dict = MappingProxyType(
         {
             0: {
                 "Success": [
