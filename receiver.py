@@ -19,7 +19,7 @@ def on_disconnect(client, userdata, flags, reason_code, properties):
     print("Already received", len(client._in_packet['packet']) )
 
 
-client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
+client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, client_id = "Receiver")
 client.on_connect = on_connect
 client.on_message = on_message
 client.on_disconnect = on_disconnect
