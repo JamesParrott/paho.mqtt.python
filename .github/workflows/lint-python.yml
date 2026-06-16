@@ -1,9 +1,9 @@
 name: lint_python
 on:
   pull_request:
-    branches: [master]
+    branches: [master, Issue_805_negative_inflight_messages]
   push:
-    branches: [master]
+    branches: [master, Issue_805_negative_inflight_messages]
 jobs:
   lint_python:
     runs-on: ubuntu-latest

@@ -1,9 +1,9 @@
 name: build
 on:
   pull_request:
-    branches: [master]
+    branches: [master, Issue_805_negative_inflight_messages]
   push:
-    branches: [master]
+    branches: [master, Issue_805_negative_inflight_messages]
 jobs:
   build:
     runs-on: ubuntu-latest
