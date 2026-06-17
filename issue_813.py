@@ -20,21 +20,21 @@ for _ in range(10):
 is_connected = client.is_connected()
 print(f"{is_connected=}")
 
-print("starting loop...")
-client.loop_start()
-print("loop started")
-while True:
-    print("publishing message...")
-    client.publish("testtopic1", "hello world", qos=0)
-    time.sleep(0.5)
+# print("starting loop...")
+# client.loop_start()
+# print("loop started")
+# while True:
+#     print("publishing message...")
+#     client.publish("testtopic1", "hello world", qos=0)
+#     time.sleep(0.5)
 
-# last_pub_time = None
-# while is_connected:
-#     client.loop() #_misc()
-#     now = time.time()
-#     if last_pub_time is None or now - last_pub_time > 0.5:
-#         print("publishing message...")
-#         # client.loop_write()
-#         client.publish("testtopic1", b"hello world", qos=0)
-#         last_pub_time = now
-#         # client.loop_read()
+last_pub_time = 0
+while is_connected:
+    client.loop_misc()
+    now = time.time()
+    if now - last_pub_time > 0.5:
+        print("publishing message...")
+        # client.loop_write()
+        client.publish("testtopic1", b"hello world", qos=1)
+        last_pub_time = now
+        # client.loop_read()
