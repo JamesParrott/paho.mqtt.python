@@ -3146,44 +3146,46 @@ class Client:
             self._in_packet['to_process'] = self._in_packet['remaining_length']
 
         count = 100 # Don't get stuck in this loop if we have a huge message.
-        while self._in_packet['to_process'] > 0:
+        rc: MQTTErrorCode | None = None
+
+        while (self._in_packet['to_process'] > 0 and count > 0 and rc is None):
             try:
                 data = self._sock_recv(self._in_packet['to_process'])
             except BlockingIOError:
-                return MQTTErrorCode.MQTT_ERR_AGAIN
+                rc = MQTTErrorCode.MQTT_ERR_AGAIN
             except OSError as err:
                 self._easy_log(
                     MQTT_LOG_ERR, 'failed to receive on socket: %s', err)
-                return MQTTErrorCode.MQTT_ERR_CONN_LOST
+                rc = MQTTErrorCode.MQTT_ERR_CONN_LOST
             else:
                 if len(data) == 0:
-                    return MQTTErrorCode.MQTT_ERR_CONN_LOST
+                    rc = MQTTErrorCode.MQTT_ERR_CONN_LOST
                 self._in_packet['to_process'] -= len(data)
                 self._in_packet['packet'] += data
             count -= 1
-            if count == 0:
-                # self._last_bytes_received could be updated on every iteration 
-                # (also when count > 0).  Not doing so avoids any
-                # performance overhead from aquiring the lock every iteration.
-                with self._msgtime_mutex:
-                    self._last_bytes_received = time_func()
-                return MQTTErrorCode.MQTT_ERR_AGAIN
 
-        # All data for this packet is read.
-        self._in_packet['pos'] = 0
-        rc = self._packet_handle()
 
-        # Free data and reset values
-        self._in_packet = {
-            "command": 0,
-            "have_remaining": 0,
-            "remaining_count": [],
-            "remaining_mult": 1,
-            "remaining_length": 0,
-            "packet": bytearray(b""),
-            "to_process": 0,
-            "pos": 0,
-        }
+        if rc is None and count <= 0:
+            rc = MQTTErrorCode.MQTT_ERR_AGAIN
+
+
+        if rc is None:
+
+            # All data for this packet is read.
+            self._in_packet['pos'] = 0
+            rc = self._packet_handle()
+
+            # Free data and reset values
+            self._in_packet = {
+                "command": 0,
+                "have_remaining": 0,
+                "remaining_count": [],
+                "remaining_mult": 1,
+                "remaining_length": 0,
+                "packet": bytearray(b""),
+                "to_process": 0,
+                "pos": 0,
+            }
 
         with self._msgtime_mutex:
             self._last_bytes_received = time_func()
