@@ -1,0 +1,833 @@
+Welcome to Ubuntu 26.04 LTS (GNU/Linux 7.0.0-15-generic x86_64)
+
+ * Documentation:  https://docs.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Jul 20 02:49:53 PM UTC 2026
+
+  System load:  0.44              Processes:             127
+  Usage of /:   3.7% of 37.22GB   Users logged in:       0
+  Memory usage: 11%               IPv4 address for eth0: 167.233.215.4
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f8:c015:7d5f::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+root@ubuntu-2gb-fsn1-1:~# curl -LsSf https://astral.sh/uv/install.sh | sh
+downloading uv 0.11.29 x86_64-unknown-linux-gnu
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+root@ubuntu-2gb-fsn1-1:~# git
+usage: git [-v | --version] [-h | --help] [-C <path>] [-c <name>=<value>]
+           [--exec-path[=<path>]] [--html-path] [--man-path] [--info-path]
+           [-p | --paginate | -P | --no-pager] [--no-replace-objects] [--no-lazy-fetch]
+           [--no-optional-locks] [--no-advice] [--bare] [--git-dir=<path>]
+           [--work-tree=<path>] [--namespace=<name>] [--config-env=<name>=<envvar>]
+           <command> [<args>]
+
+These are common Git commands used in various situations:
+
+start a working area (see also: git help tutorial)
+   clone      Clone a repository into a new directory
+   init       Create an empty Git repository or reinitialize an existing one
+
+work on the current change (see also: git help everyday)
+   add        Add file contents to the index
+   mv         Move or rename a file, a directory, or a symlink
+   restore    Restore working tree files
+   rm         Remove files from the working tree and from the index
+
+examine the history and state (see also: git help revisions)
+   bisect     Use binary search to find the commit that introduced a bug
+   diff       Show changes between commits, commit and working tree, etc
+   grep       Print lines matching a pattern
+   log        Show commit logs
+   show       Show various types of objects
+   status     Show the working tree status
+
+grow, mark and tweak your common history
+   backfill   Download missing objects in a partial clone
+   branch     List, create, or delete branches
+   commit     Record changes to the repository
+   merge      Join two or more development histories together
+   rebase     Reapply commits on top of another base tip
+   reset      Set `HEAD` or the index to a known state
+   switch     Switch branches
+   tag        Create, list, delete or verify tags
+
+collaborate (see also: git help workflows)
+   fetch      Download objects and refs from another repository
+   pull       Fetch from and integrate with another repository or a local branch
+   push       Update remote refs along with associated objects
+
+'git help -a' and 'git help -g' list available subcommands and some
+concept guides. See 'git help <command>' or 'git help <concept>'
+to read about a specific subcommand or concept.
+See 'git help git' for an overview of the system.
+root@ubuntu-2gb-fsn1-1:~# git clone --depth=1 https://github.com/eclipse-paho/paho.mqtt.python
+Cloning into 'paho.mqtt.python'...
+remote: Enumerating objects: 163, done.
+remote: Counting objects: 100% (163/163), done.
+remote: Compressing objects: 100% (126/126), done.
+remote: Total 163 (delta 59), reused 79 (delta 35), pack-reused 0 (from 0)
+Receiving objects: 100% (163/163), 172.29 KiB | 3.59 MiB/s, done.
+Resolving deltas: 100% (59/59), done.
+root@ubuntu-2gb-fsn1-1:~# cd paho.mqtt.python/
+root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# uv venv
+uv: command not found
+root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# cd ..
+root@ubuntu-2gb-fsn1-1:~# source $HOME/.local/bin/env
+root@ubuntu-2gb-fsn1-1:~# cd paho.mqtt.python/
+root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# uv venv
+Using CPython 3.14.4 interpreter at: /usr/bin/python3
+Creating virtual environment at: .venv
+Activate with: source .venv/bin/activate
+root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# source .venv/bin/activate
+(paho.mqtt.python) root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# uv pip install -e .
+Resolved 1 package in 449ms
+      Built paho-mqtt @ file:///root/paho.mqtt.python                                                                   Prepared 1 package in 104ms
+Installed 1 package in 0.94ms
+ + paho-mqtt==2.1.1.dev0 (from file:///root/paho.mqtt.python)
+(paho.mqtt.python) root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# uv pip install pytest-cov
+Resolved 7 packages in 167ms
+Prepared 5 packages in 76ms
+Installed 7 packages in 15ms
+ + coverage==7.15.2
+ + iniconfig==2.3.0
+ + packaging==26.2
+ + pluggy==1.6.0
+ + pygments==2.20.0
+ + pytest==9.1.1
+ + pytest-cov==7.1.0
+(paho.mqtt.python) root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# pytest
+================================================= test session starts ==================================================
+platform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0
+rootdir: /root/paho.mqtt.python
+configfile: pyproject.toml
+testpaths: tests, src
+plugins: cov-7.1.0
+collected 163 items
+
+tests/lib/test_01_asyncio.py .                                                                                   [  0%]
+tests/lib/test_01_decorators.py .                                                                                [  1%]
+tests/lib/test_01_keepalive_pingreq.py .                                                                         [  1%]
+tests/lib/test_01_no_clean_session.py .                                                                          [  2%]
+tests/lib/test_01_reconnect_on_failure.py ..                                                                     [  3%]
+tests/lib/test_01_unpwd_empty_password_set.py .                                                                  [  4%]
+tests/lib/test_01_unpwd_empty_set.py .                                                                           [  4%]
+tests/lib/test_01_unpwd_set.py .E                                                                                [  5%]
+tests/lib/test_01_unpwd_unicode_set.py .                                                                         [  6%]
+tests/lib/test_01_will_set.py .                                                                                  [  6%]
+tests/lib/test_01_will_unpwd_set.py .                                                                            [  7%]
+tests/lib/test_01_zero_length_clientid.py .                                                                      [  7%]
+tests/lib/test_02_subscribe_qos0.py .                                                                            [  8%]
+tests/lib/test_02_subscribe_qos1.py .                                                                            [  9%]
+tests/lib/test_02_subscribe_qos2.py .                                                                            [  9%]
+tests/lib/test_02_unsubscribe.py .                                                                               [ 10%]
+tests/lib/test_03_publish_b2c_qos1.py .                                                                          [ 11%]
+tests/lib/test_03_publish_b2c_qos2.py .                                                                          [ 11%]
+tests/lib/test_03_publish_c2b_qos1_disconnect.py .                                                               [ 12%]
+tests/lib/test_03_publish_c2b_qos2_disconnect.py .                                                               [ 12%]
+tests/lib/test_03_publish_fill_inflight.py x                                                                     [ 13%]
+tests/lib/test_03_publish_helper_qos0.py .                                                                       [ 14%]
+tests/lib/test_03_publish_helper_qos0_v5.py .E                                                                   [ 14%]
+tests/lib/test_03_publish_helper_qos1_disconnect.py .                                                            [ 15%]
+tests/lib/test_03_publish_qos0.py .                                                                              [ 15%]
+tests/lib/test_03_publish_qos0_no_payload.py .                                                                   [ 16%]
+tests/lib/test_04_retain_qos0.py .                                                                               [ 17%]
+tests/lib/test_08_ssl_bad_cacert.py .                                                                            [ 17%]
+tests/lib/test_08_ssl_connect_alpn.py .                                                                          [ 18%]
+tests/lib/test_08_ssl_connect_cert_auth.py .                                                                     [ 19%]
+tests/lib/test_08_ssl_connect_cert_auth_pw.py .                                                                  [ 19%]
+tests/lib/test_08_ssl_connect_no_auth.py .                                                                       [ 20%]
+tests/lib/test_08_ssl_fake_cacert.py .                                                                           [ 20%]
+tests/test_client.py ..............................................................FFFF                          [ 61%]
+tests/test_matcher.py .................                                                                          [ 71%]
+tests/test_mqttv5.py sssssssssssssssssssss                                                                       [ 84%]
+tests/test_reasoncodes.py ...                                                                                    [ 86%]
+tests/test_websocket_integration.py ..................                                                           [ 97%]
+tests/test_websockets.py ....                                                                                    [100%]
+
+======================================================== ERRORS ========================================================
+________________________________________ ERROR at teardown of test_01_unpwd_set ________________________________________
+
+    def fin():
+        stop_process(proc)
+        # If return code is None, process had not stopped when a method was last called on proc.
+        # https://docs.python.org/library/subprocess.html#subprocess.Popen.returncode
+        if proc.returncode != expected_returncode:
+>           raise RuntimeError(f"Client {name} exited with code {proc.returncode}, expected {expected_returncode}")
+E           RuntimeError: Client 01-unpwd-set.py exited with code -2, expected 0
+
+tests/lib/conftest.py:89: RuntimeError
+------------------------------------------------- Captured stderr call -------------------------------------------------
+/root/paho.mqtt.python/tests/lib/clients/01-unpwd-set.py:5: DeprecationWarning: Callback API version 1 is deprecated, update to latest version
+  mqttc = mqtt.Client(mqtt.CallbackAPIVersion.VERSION1, "01-unpwd-set")
+----------------------------------------------- Captured stderr teardown -----------------------------------------------
+Traceback (most recent call last):
+  File "/root/paho.mqtt.python/tests/lib/clients/01-unpwd-set.py", line 8, in <module>
+    mqttc.connect("localhost", get_test_server_port())
+    ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/paho.mqtt.python/src/paho/mqtt/client.py", line 1448, in connect
+    return self.reconnect()
+           ~~~~~~~~~~~~~~^^
+  File "/root/paho.mqtt.python/src/paho/mqtt/client.py", line 1617, in reconnect
+    return self._send_connect(self._keepalive)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/root/paho.mqtt.python/src/paho/mqtt/client.py", line 3600, in _send_connect
+    return self._packet_queue(command, packet, 0, 0)
+           ~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/paho.mqtt.python/src/paho/mqtt/client.py", line 3817, in _packet_queue
+    return self.loop_write()
+           ~~~~~~~~~~~~~~~^^
+  File "/root/paho.mqtt.python/src/paho/mqtt/client.py", line 2148, in loop_write
+    rc = self._packet_write()
+  File "/root/paho.mqtt.python/src/paho/mqtt/client.py", line 3195, in _packet_write
+    write_length = self._sock_send(
+        packet['packet'][packet['pos']:])
+  File "/root/paho.mqtt.python/src/paho/mqtt/client.py", line 1126, in _sock_send
+    return self._sock.send(buf)
+           ~~~~~~~~~~~~~~~^^^^^
+KeyboardInterrupt
+_________________________________ ERROR at teardown of test_03_publish_helper_qos0_v5 __________________________________
+
+    def fin():
+        stop_process(proc)
+        # If return code is None, process had not stopped when a method was last called on proc.
+        # https://docs.python.org/library/subprocess.html#subprocess.Popen.returncode
+        if proc.returncode != expected_returncode:
+>           raise RuntimeError(f"Client {name} exited with code {proc.returncode}, expected {expected_returncode}")
+E           RuntimeError: Client 03-publish-helper-qos0-v5.py exited with code -2, expected 0
+
+tests/lib/conftest.py:89: RuntimeError
+----------------------------------------------- Captured stderr teardown -----------------------------------------------
+Traceback (most recent call last):
+  File "/root/paho.mqtt.python/tests/lib/clients/03-publish-helper-qos0-v5.py", line 7, in <module>
+    paho.mqtt.publish.single(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        "pub/qos0/test",
+        ^^^^^^^^^^^^^^^^
+    ...<5 lines>...
+        protocol=paho.mqtt.client.MQTTv5,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "/root/paho.mqtt.python/src/paho/mqtt/publish.py", line 305, in single
+    multiple([msg], hostname, port, client_id, keepalive, will, auth, tls,
+    ~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+             protocol, transport, proxy_args)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/paho.mqtt.python/src/paho/mqtt/publish.py", line 228, in multiple
+    client.loop_forever()
+    ~~~~~~~~~~~~~~~~~~~^^
+  File "/root/paho.mqtt.python/src/paho/mqtt/client.py", line 2324, in loop_forever
+    rc = self._loop(timeout)
+  File "/root/paho.mqtt.python/src/paho/mqtt/client.py", line 1730, in _loop
+    rc = self.loop_write()
+  File "/root/paho.mqtt.python/src/paho/mqtt/client.py", line 2148, in loop_write
+    rc = self._packet_write()
+  File "/root/paho.mqtt.python/src/paho/mqtt/client.py", line 3257, in _packet_write
+    self._sock_close()
+    ~~~~~~~~~~~~~~~~^^
+  File "/root/paho.mqtt.python/src/paho/mqtt/client.py", line 1148, in _sock_close
+    sock.close()
+    ~~~~~~~~~~^^
+  File "/usr/lib/python3.14/socket.py", line 511, in close
+    self._real_close()
+    ~~~~~~~~~~~~~~~~^^
+  File "/usr/lib/python3.14/socket.py", line 505, in _real_close
+    _ss.close(self)
+    ~~~~~~~~~^^^^^^
+KeyboardInterrupt
+======================================================= FAILURES =======================================================
+____________________________________ TestCompatibility.test_callback_v1_mqtt3[tcp] _____________________________________
+
+self = <tests.test_client.TestCompatibility object at 0x7429be0f0c30>
+fake_broker = <tests.testsupport.broker.FakeBroker object at 0x7429be0b0910>
+
+    def test_callback_v1_mqtt3(self, fake_broker):
+        callback_called = []
+        with pytest.deprecated_call():
+            mqttc = client.Client(
+                CallbackAPIVersion.VERSION1,
+                "client-id",
+                userdata=callback_called,
+                transport=fake_broker.transport,
+            )
+
+        def on_connect(cl, userdata, flags, rc):
+            assert isinstance(cl, client.Client)
+            assert isinstance(flags, dict)
+            assert isinstance(flags["session present"], int)
+            assert isinstance(rc, int)
+            userdata.append("on_connect")
+            cl.subscribe([("topic", 0)])
+
+        def on_subscribe(cl, userdata, mid, granted_qos):
+            assert isinstance(cl, client.Client)
+            assert isinstance(mid, int)
+            assert isinstance(granted_qos, tuple)
+            assert isinstance(granted_qos[0], int)
+            userdata.append("on_subscribe")
+            cl.publish("topic", "payload", 2)
+
+        def on_publish(cl, userdata, mid):
+            assert isinstance(cl, client.Client)
+            assert isinstance(mid, int)
+            userdata.append("on_publish")
+
+        def on_message(cl, userdata, message):
+            assert isinstance(cl, client.Client)
+            assert isinstance(message, client.MQTTMessage)
+            userdata.append("on_message")
+            cl.unsubscribe("topic")
+
+        def on_unsubscribe(cl, userdata, mid):
+            assert isinstance(cl, client.Client)
+            assert isinstance(mid, int)
+            userdata.append("on_unsubscribe")
+            cl.disconnect()
+
+        def on_disconnect(cl, userdata, rc):
+            assert isinstance(cl, client.Client)
+            assert isinstance(rc, int)
+            userdata.append("on_disconnect")
+
+        mqttc.on_connect = on_connect
+        mqttc.on_subscribe = on_subscribe
+        mqttc.on_publish = on_publish
+        mqttc.on_message = on_message
+        mqttc.on_unsubscribe = on_unsubscribe
+        mqttc.on_disconnect = on_disconnect
+
+        mqttc.enable_logger()
+        mqttc.connect_async("localhost", fake_broker.port)
+        mqttc.loop_start()
+
+        try:
+            fake_broker.start()
+
+            connect_packet = paho_test.gen_connect(
+                "client-id", keepalive=60)
+            fake_broker.expect_packet("connect", connect_packet)
+
+            connack_packet = paho_test.gen_connack(rc=0)
+            count = fake_broker.send_packet(connack_packet)
+            assert count  # Check connection was not closed
+            assert count == len(connack_packet)
+
+            subscribe_packet = paho_test.gen_subscribe(1, "topic", 0)
+            fake_broker.expect_packet("subscribe", subscribe_packet)
+
+            suback_packet = paho_test.gen_suback(1, 0)
+            count = fake_broker.send_packet(suback_packet)
+            assert count  # Check connection was not closed
+            assert count == len(suback_packet)
+
+            publish_packet = paho_test.gen_publish("topic", 2, "payload", mid=2)
+            fake_broker.expect_packet("publish", publish_packet)
+
+            pubrec_packet = paho_test.gen_pubrec(mid=2)
+            count = fake_broker.send_packet(pubrec_packet)
+            assert count  # Check connection was not closed
+            assert count == len(pubrec_packet)
+
+            pubrel_packet = paho_test.gen_pubrel(mid=2)
+            fake_broker.expect_packet("pubrel", pubrel_packet)
+
+            pubcomp_packet = paho_test.gen_pubcomp(mid=2)
+            count = fake_broker.send_packet(pubcomp_packet)
+            assert count  # Check connection was not closed
+            assert count == len(pubcomp_packet)
+
+            publish_from_broker_packet = paho_test.gen_publish("topic", qos=0, payload="payload", mid=99)
+            count = fake_broker.send_packet(publish_from_broker_packet)
+            assert count  # Check connection was not closed
+            assert count == len(publish_from_broker_packet)
+
+            unsubscribe_packet = paho_test.gen_unsubscribe(mid=3, topic="topic")
+            fake_broker.expect_packet("unsubscribe", unsubscribe_packet)
+
+            suback_packet = paho_test.gen_unsuback(mid=3)
+            count = fake_broker.send_packet(suback_packet)
+            assert count  # Check connection was not closed
+            assert count == len(suback_packet)
+
+            disconnect_packet = paho_test.gen_disconnect()
+            fake_broker.expect_packet("disconnect", disconnect_packet)
+
+>           assert callback_called == [
+                "on_connect",
+                "on_subscribe",
+                "on_publish",
+                "on_message",
+                "on_unsubscribe",
+                "on_disconnect",
+            ]
+E           AssertionError: assert ['on_connect'..._unsubscribe'] == ['on_connect'...n_disconnect']
+E
+E             Right contains one more item: 'on_disconnect'
+E             Use -v to get more diff
+
+tests/test_client.py:867: AssertionError
+-------------------------------------------------- Captured log call ---------------------------------------------------
+ERROR    paho.mqtt.client:client.py:3286 Client is not connected. Socket: None). Last known Connection State: MQTT_CS_DISCONNECTED
+____________________________________ TestCompatibility.test_callback_v1_mqtt3[unix] ____________________________________
+
+self = <tests.test_client.TestCompatibility object at 0x7429be0f0d60>
+fake_broker = <tests.testsupport.broker.FakeBroker object at 0x7429be4b7540>
+
+    def test_callback_v1_mqtt3(self, fake_broker):
+        callback_called = []
+        with pytest.deprecated_call():
+            mqttc = client.Client(
+                CallbackAPIVersion.VERSION1,
+                "client-id",
+                userdata=callback_called,
+                transport=fake_broker.transport,
+            )
+
+        def on_connect(cl, userdata, flags, rc):
+            assert isinstance(cl, client.Client)
+            assert isinstance(flags, dict)
+            assert isinstance(flags["session present"], int)
+            assert isinstance(rc, int)
+            userdata.append("on_connect")
+            cl.subscribe([("topic", 0)])
+
+        def on_subscribe(cl, userdata, mid, granted_qos):
+            assert isinstance(cl, client.Client)
+            assert isinstance(mid, int)
+            assert isinstance(granted_qos, tuple)
+            assert isinstance(granted_qos[0], int)
+            userdata.append("on_subscribe")
+            cl.publish("topic", "payload", 2)
+
+        def on_publish(cl, userdata, mid):
+            assert isinstance(cl, client.Client)
+            assert isinstance(mid, int)
+            userdata.append("on_publish")
+
+        def on_message(cl, userdata, message):
+            assert isinstance(cl, client.Client)
+            assert isinstance(message, client.MQTTMessage)
+            userdata.append("on_message")
+            cl.unsubscribe("topic")
+
+        def on_unsubscribe(cl, userdata, mid):
+            assert isinstance(cl, client.Client)
+            assert isinstance(mid, int)
+            userdata.append("on_unsubscribe")
+            cl.disconnect()
+
+        def on_disconnect(cl, userdata, rc):
+            assert isinstance(cl, client.Client)
+            assert isinstance(rc, int)
+            userdata.append("on_disconnect")
+
+        mqttc.on_connect = on_connect
+        mqttc.on_subscribe = on_subscribe
+        mqttc.on_publish = on_publish
+        mqttc.on_message = on_message
+        mqttc.on_unsubscribe = on_unsubscribe
+        mqttc.on_disconnect = on_disconnect
+
+        mqttc.enable_logger()
+        mqttc.connect_async("localhost", fake_broker.port)
+        mqttc.loop_start()
+
+        try:
+            fake_broker.start()
+
+            connect_packet = paho_test.gen_connect(
+                "client-id", keepalive=60)
+            fake_broker.expect_packet("connect", connect_packet)
+
+            connack_packet = paho_test.gen_connack(rc=0)
+            count = fake_broker.send_packet(connack_packet)
+            assert count  # Check connection was not closed
+            assert count == len(connack_packet)
+
+            subscribe_packet = paho_test.gen_subscribe(1, "topic", 0)
+            fake_broker.expect_packet("subscribe", subscribe_packet)
+
+            suback_packet = paho_test.gen_suback(1, 0)
+            count = fake_broker.send_packet(suback_packet)
+            assert count  # Check connection was not closed
+            assert count == len(suback_packet)
+
+            publish_packet = paho_test.gen_publish("topic", 2, "payload", mid=2)
+            fake_broker.expect_packet("publish", publish_packet)
+
+            pubrec_packet = paho_test.gen_pubrec(mid=2)
+            count = fake_broker.send_packet(pubrec_packet)
+            assert count  # Check connection was not closed
+            assert count == len(pubrec_packet)
+
+            pubrel_packet = paho_test.gen_pubrel(mid=2)
+            fake_broker.expect_packet("pubrel", pubrel_packet)
+
+            pubcomp_packet = paho_test.gen_pubcomp(mid=2)
+            count = fake_broker.send_packet(pubcomp_packet)
+            assert count  # Check connection was not closed
+            assert count == len(pubcomp_packet)
+
+            publish_from_broker_packet = paho_test.gen_publish("topic", qos=0, payload="payload", mid=99)
+            count = fake_broker.send_packet(publish_from_broker_packet)
+            assert count  # Check connection was not closed
+            assert count == len(publish_from_broker_packet)
+
+            unsubscribe_packet = paho_test.gen_unsubscribe(mid=3, topic="topic")
+            fake_broker.expect_packet("unsubscribe", unsubscribe_packet)
+
+            suback_packet = paho_test.gen_unsuback(mid=3)
+            count = fake_broker.send_packet(suback_packet)
+            assert count  # Check connection was not closed
+            assert count == len(suback_packet)
+
+            disconnect_packet = paho_test.gen_disconnect()
+            fake_broker.expect_packet("disconnect", disconnect_packet)
+
+>           assert callback_called == [
+                "on_connect",
+                "on_subscribe",
+                "on_publish",
+                "on_message",
+                "on_unsubscribe",
+                "on_disconnect",
+            ]
+E           AssertionError: assert ['on_connect'..._unsubscribe'] == ['on_connect'...n_disconnect']
+E
+E             Right contains one more item: 'on_disconnect'
+E             Use -v to get more diff
+
+tests/test_client.py:867: AssertionError
+-------------------------------------------------- Captured log call ---------------------------------------------------
+ERROR    paho.mqtt.client:client.py:3286 Client is not connected. Socket: None). Last known Connection State: MQTT_CS_DISCONNECTED
+____________________________________ TestCompatibility.test_callback_v2_mqtt3[tcp] _____________________________________
+
+self = <tests.test_client.TestCompatibility object at 0x7429bdf585f0>
+fake_broker = <tests.testsupport.broker.FakeBroker object at 0x7429be4b7700>
+
+    def test_callback_v2_mqtt3(self, fake_broker):
+        callback_called = []
+        mqttc = client.Client(
+            CallbackAPIVersion.VERSION2,
+            "client-id",
+            userdata=callback_called,
+            transport=fake_broker.transport,
+        )
+
+        def on_connect(cl, userdata, flags, reason, properties):
+            assert isinstance(cl, client.Client)
+            assert isinstance(flags, client.ConnectFlags)
+            assert isinstance(reason, ReasonCode)
+            assert isinstance(properties, Properties)
+            assert reason == 0
+            assert properties.isEmpty()
+            userdata.append("on_connect")
+            cl.subscribe([("topic", 0)])
+
+        def on_subscribe(cl, userdata, mid, reason_code_list, properties):
+            assert isinstance(cl, client.Client)
+            assert isinstance(mid, int)
+            assert isinstance(reason_code_list, list)
+            assert isinstance(reason_code_list[0], ReasonCode)
+            assert isinstance(properties, Properties)
+            assert properties.isEmpty()
+            userdata.append("on_subscribe")
+            cl.publish("topic", "payload", 2)
+
+        def on_publish(cl, userdata, mid, reason_code, properties):
+            assert isinstance(cl, client.Client)
+            assert isinstance(mid, int)
+            assert isinstance(reason_code, ReasonCode)
+            assert isinstance(properties, Properties)
+            assert properties.isEmpty()
+            userdata.append("on_publish")
+
+        def on_message(cl, userdata, message):
+            assert isinstance(cl, client.Client)
+            assert isinstance(message, client.MQTTMessage)
+            userdata.append("on_message")
+            cl.unsubscribe("topic")
+
+        def on_unsubscribe(cl, userdata, mid, reason_code_list, properties):
+            assert isinstance(cl, client.Client)
+            assert isinstance(mid, int)
+            assert isinstance(reason_code_list, list)
+            assert len(reason_code_list) == 0
+            assert isinstance(properties, Properties)
+            assert properties.isEmpty()
+            userdata.append("on_unsubscribe")
+            cl.disconnect()
+
+        def on_disconnect(cl, userdata, flags, reason_code, properties):
+            assert isinstance(cl, client.Client)
+            assert isinstance(flags, client.DisconnectFlags)
+            assert isinstance(reason_code, ReasonCode)
+            assert isinstance(properties, Properties)
+            assert properties.isEmpty()
+            userdata.append("on_disconnect")
+
+        mqttc.on_connect = on_connect
+        mqttc.on_subscribe = on_subscribe
+        mqttc.on_publish = on_publish
+        mqttc.on_message = on_message
+        mqttc.on_unsubscribe = on_unsubscribe
+        mqttc.on_disconnect = on_disconnect
+
+        mqttc.enable_logger()
+        mqttc.connect_async("localhost", fake_broker.port)
+        mqttc.loop_start()
+
+        try:
+            fake_broker.start()
+
+            connect_packet = paho_test.gen_connect(
+                "client-id", keepalive=60)
+            fake_broker.expect_packet("connect", connect_packet)
+
+            connack_packet = paho_test.gen_connack(rc=0)
+            count = fake_broker.send_packet(connack_packet)
+            assert count  # Check connection was not closed
+            assert count == len(connack_packet)
+
+            subscribe_packet = paho_test.gen_subscribe(1, "topic", 0)
+            fake_broker.expect_packet("subscribe", subscribe_packet)
+
+            suback_packet = paho_test.gen_suback(1, 0)
+            count = fake_broker.send_packet(suback_packet)
+            assert count  # Check connection was not closed
+            assert count == len(suback_packet)
+
+            publish_packet = paho_test.gen_publish("topic", 2, "payload", mid=2)
+            fake_broker.expect_packet("publish", publish_packet)
+
+            pubrec_packet = paho_test.gen_pubrec(mid=2)
+            count = fake_broker.send_packet(pubrec_packet)
+            assert count  # Check connection was not closed
+            assert count == len(pubrec_packet)
+
+            pubrel_packet = paho_test.gen_pubrel(mid=2)
+            fake_broker.expect_packet("pubrel", pubrel_packet)
+
+            pubcomp_packet = paho_test.gen_pubcomp(mid=2)
+            count = fake_broker.send_packet(pubcomp_packet)
+            assert count  # Check connection was not closed
+            assert count == len(pubcomp_packet)
+
+            publish_from_broker_packet = paho_test.gen_publish("topic", qos=0, payload="payload", mid=99)
+            count = fake_broker.send_packet(publish_from_broker_packet)
+            assert count  # Check connection was not closed
+            assert count == len(publish_from_broker_packet)
+
+            unsubscribe_packet = paho_test.gen_unsubscribe(mid=3, topic="topic")
+            fake_broker.expect_packet("unsubscribe", unsubscribe_packet)
+
+            suback_packet = paho_test.gen_unsuback(mid=3)
+            count = fake_broker.send_packet(suback_packet)
+            assert count  # Check connection was not closed
+            assert count == len(suback_packet)
+
+            disconnect_packet = paho_test.gen_disconnect()
+            fake_broker.expect_packet("disconnect", disconnect_packet)
+
+>           assert callback_called == [
+                "on_connect",
+                "on_subscribe",
+                "on_publish",
+                "on_message",
+                "on_unsubscribe",
+                "on_disconnect",
+            ]
+E           AssertionError: assert ['on_connect'..._unsubscribe'] == ['on_connect'...n_disconnect']
+E
+E             Right contains one more item: 'on_disconnect'
+E             Use -v to get more diff
+
+tests/test_client.py:1007: AssertionError
+-------------------------------------------------- Captured log call ---------------------------------------------------
+ERROR    paho.mqtt.client:client.py:3286 Client is not connected. Socket: None). Last known Connection State: MQTT_CS_DISCONNECTED
+____________________________________ TestCompatibility.test_callback_v2_mqtt3[unix] ____________________________________
+
+self = <tests.test_client.TestCompatibility object at 0x7429be773460>
+fake_broker = <tests.testsupport.broker.FakeBroker object at 0x7429be4b7850>
+
+    def test_callback_v2_mqtt3(self, fake_broker):
+        callback_called = []
+        mqttc = client.Client(
+            CallbackAPIVersion.VERSION2,
+            "client-id",
+            userdata=callback_called,
+            transport=fake_broker.transport,
+        )
+
+        def on_connect(cl, userdata, flags, reason, properties):
+            assert isinstance(cl, client.Client)
+            assert isinstance(flags, client.ConnectFlags)
+            assert isinstance(reason, ReasonCode)
+            assert isinstance(properties, Properties)
+            assert reason == 0
+            assert properties.isEmpty()
+            userdata.append("on_connect")
+            cl.subscribe([("topic", 0)])
+
+        def on_subscribe(cl, userdata, mid, reason_code_list, properties):
+            assert isinstance(cl, client.Client)
+            assert isinstance(mid, int)
+            assert isinstance(reason_code_list, list)
+            assert isinstance(reason_code_list[0], ReasonCode)
+            assert isinstance(properties, Properties)
+            assert properties.isEmpty()
+            userdata.append("on_subscribe")
+            cl.publish("topic", "payload", 2)
+
+        def on_publish(cl, userdata, mid, reason_code, properties):
+            assert isinstance(cl, client.Client)
+            assert isinstance(mid, int)
+            assert isinstance(reason_code, ReasonCode)
+            assert isinstance(properties, Properties)
+            assert properties.isEmpty()
+            userdata.append("on_publish")
+
+        def on_message(cl, userdata, message):
+            assert isinstance(cl, client.Client)
+            assert isinstance(message, client.MQTTMessage)
+            userdata.append("on_message")
+            cl.unsubscribe("topic")
+
+        def on_unsubscribe(cl, userdata, mid, reason_code_list, properties):
+            assert isinstance(cl, client.Client)
+            assert isinstance(mid, int)
+            assert isinstance(reason_code_list, list)
+            assert len(reason_code_list) == 0
+            assert isinstance(properties, Properties)
+            assert properties.isEmpty()
+            userdata.append("on_unsubscribe")
+            cl.disconnect()
+
+        def on_disconnect(cl, userdata, flags, reason_code, properties):
+            assert isinstance(cl, client.Client)
+            assert isinstance(flags, client.DisconnectFlags)
+            assert isinstance(reason_code, ReasonCode)
+            assert isinstance(properties, Properties)
+            assert properties.isEmpty()
+            userdata.append("on_disconnect")
+
+        mqttc.on_connect = on_connect
+        mqttc.on_subscribe = on_subscribe
+        mqttc.on_publish = on_publish
+        mqttc.on_message = on_message
+        mqttc.on_unsubscribe = on_unsubscribe
+        mqttc.on_disconnect = on_disconnect
+
+        mqttc.enable_logger()
+        mqttc.connect_async("localhost", fake_broker.port)
+        mqttc.loop_start()
+
+        try:
+            fake_broker.start()
+
+            connect_packet = paho_test.gen_connect(
+                "client-id", keepalive=60)
+            fake_broker.expect_packet("connect", connect_packet)
+
+            connack_packet = paho_test.gen_connack(rc=0)
+            count = fake_broker.send_packet(connack_packet)
+            assert count  # Check connection was not closed
+            assert count == len(connack_packet)
+
+            subscribe_packet = paho_test.gen_subscribe(1, "topic", 0)
+            fake_broker.expect_packet("subscribe", subscribe_packet)
+
+            suback_packet = paho_test.gen_suback(1, 0)
+            count = fake_broker.send_packet(suback_packet)
+            assert count  # Check connection was not closed
+            assert count == len(suback_packet)
+
+            publish_packet = paho_test.gen_publish("topic", 2, "payload", mid=2)
+            fake_broker.expect_packet("publish", publish_packet)
+
+            pubrec_packet = paho_test.gen_pubrec(mid=2)
+            count = fake_broker.send_packet(pubrec_packet)
+            assert count  # Check connection was not closed
+            assert count == len(pubrec_packet)
+
+            pubrel_packet = paho_test.gen_pubrel(mid=2)
+            fake_broker.expect_packet("pubrel", pubrel_packet)
+
+            pubcomp_packet = paho_test.gen_pubcomp(mid=2)
+            count = fake_broker.send_packet(pubcomp_packet)
+            assert count  # Check connection was not closed
+            assert count == len(pubcomp_packet)
+
+            publish_from_broker_packet = paho_test.gen_publish("topic", qos=0, payload="payload", mid=99)
+            count = fake_broker.send_packet(publish_from_broker_packet)
+            assert count  # Check connection was not closed
+            assert count == len(publish_from_broker_packet)
+
+            unsubscribe_packet = paho_test.gen_unsubscribe(mid=3, topic="topic")
+            fake_broker.expect_packet("unsubscribe", unsubscribe_packet)
+
+            suback_packet = paho_test.gen_unsuback(mid=3)
+            count = fake_broker.send_packet(suback_packet)
+            assert count  # Check connection was not closed
+            assert count == len(suback_packet)
+
+            disconnect_packet = paho_test.gen_disconnect()
+            fake_broker.expect_packet("disconnect", disconnect_packet)
+
+>           assert callback_called == [
+                "on_connect",
+                "on_subscribe",
+                "on_publish",
+                "on_message",
+                "on_unsubscribe",
+                "on_disconnect",
+            ]
+E           AssertionError: assert ['on_connect'..._unsubscribe'] == ['on_connect'...n_disconnect']
+E
+E             Right contains one more item: 'on_disconnect'
+E             Use -v to get more diff
+
+tests/test_client.py:1007: AssertionError
+-------------------------------------------------- Captured log call ---------------------------------------------------
+ERROR    paho.mqtt.client:client.py:3286 Client is not connected. Socket: None). Last known Connection State: MQTT_CS_DISCONNECTED
+=============================================== short test summary info ================================================
+XFAIL tests/lib/test_03_publish_fill_inflight.py::test_03_publish_fill_inflight
+SKIPPED [21] .venv/lib/python3.14/site-packages/_pytest/unittest.py:523: paho.mqtt.testing not present.
+=========================== 4 failed, 137 passed, 21 skipped, 1 xfailed, 2 errors in 34.07s ============================
+(paho.mqtt.python) root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# history
+    1  curl -LsSf https://astral.sh/uv/install.sh | sh
+    2  git
+    3  git clone --depth=1 https://github.com/eclipse-paho/paho.mqtt.python
+    4  cd paho.mqtt.python/
+    5  uv venv
+    6  cd ..
+    7  source $HOME/.local/bin/env
+    8  cd paho.mqtt.python/
+    9  uv venv
+   10  source .venv/bin/activate
+   11  uv pip install -e .
+   12  uv pip install pytest-cov
+   13  pytest
+   14  history
+(paho.mqtt.python) root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python#
