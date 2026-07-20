@@ -1,0 +1,108 @@
+Welcome to Ubuntu 26.04 LTS (GNU/Linux 7.0.0-15-generic x86_64)
+
+ * Documentation:  https://docs.ubuntu.com
+ * Management:     https://landscape.canonical.com
+ * Support:        https://ubuntu.com/pro
+
+ System information as of Mon Jul 20 03:19:03 PM UTC 2026
+
+  System load:  0.11              Processes:             119
+  Usage of /:   3.9% of 37.22GB   Users logged in:       0
+  Memory usage: 11%               IPv4 address for eth0: 167.233.215.4
+  Swap usage:   0%                IPv6 address for eth0: 2a01:4f8:c015:7d5f::1
+
+
+Expanded Security Maintenance for Applications is not enabled.
+
+0 updates can be applied immediately.
+
+Enable ESM Apps to receive additional future security updates.
+See https://ubuntu.com/esm or run: sudo pro status
+
+
+The list of available updates is more than a week old.
+To check for new updates run: sudo apt update
+
+Last login: Mon Jul 20 14:49:54 2026 from 
+root@ubuntu-2gb-fsn1-1:~# git clone --depth=1 --branch=JamieMagee_Fix_test_Races https://github.com/JamesParrott/paho.mq
+tt.python
+Cloning into 'paho.mqtt.python'...
+remote: Enumerating objects: 163, done.
+remote: Counting objects: 100% (163/163), done.
+remote: Compressing objects: 100% (126/126), done.
+remote: Total 163 (delta 59), reused 75 (delta 35), pack-reused 0 (from 0)
+Receiving objects: 100% (163/163), 171.59 KiB | 3.18 MiB/s, done.
+Resolving deltas: 100% (59/59), done.
+root@ubuntu-2gb-fsn1-1:~# cd paho.mqtt.python/
+root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# uv venv
+Using CPython 3.14.4 interpreter at: /usr/bin/python3
+Creating virtual environment at: .venv
+Activate with: source .venv/bin/activate
+root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# . ./venv/bin/activate
+-bash: ./venv/bin/activate: No such file or directory
+root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# . .venv/bin/activate
+(paho.mqtt.python) root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# uv pip install -e .
+Resolved 1 package in 314ms
+      Built paho-mqtt @ file:///root/paho.mqtt.python                                                                   Prepared 1 package in 101ms
+Installed 1 package in 1ms
+ + paho-mqtt==2.1.1.dev0 (from file:///root/paho.mqtt.python)
+(paho.mqtt.python) root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# uv pip install pytest
+Resolved 5 packages in 53ms
+Installed 5 packages in 12ms
+ + iniconfig==2.3.0
+ + packaging==26.2
+ + pluggy==1.6.0
+ + pygments==2.20.0
+ + pytest==9.1.1
+(paho.mqtt.python) root@ubuntu-2gb-fsn1-1:~/paho.mqtt.python# pytest
+================================================= test session starts ==================================================
+platform linux -- Python 3.14.4, pytest-9.1.1, pluggy-1.6.0
+rootdir: /root/paho.mqtt.python
+configfile: pyproject.toml
+testpaths: tests, src
+collected 163 items
+
+tests/lib/test_01_asyncio.py .                                                                                   [  0%]
+tests/lib/test_01_decorators.py .                                                                                [  1%]
+tests/lib/test_01_keepalive_pingreq.py .                                                                         [  1%]
+tests/lib/test_01_no_clean_session.py .                                                                          [  2%]
+tests/lib/test_01_reconnect_on_failure.py ..                                                                     [  3%]
+tests/lib/test_01_unpwd_empty_password_set.py .                                                                  [  4%]
+tests/lib/test_01_unpwd_empty_set.py .                                                                           [  4%]
+tests/lib/test_01_unpwd_set.py .                                                                                 [  5%]
+tests/lib/test_01_unpwd_unicode_set.py .                                                                         [  6%]
+tests/lib/test_01_will_set.py .                                                                                  [  6%]
+tests/lib/test_01_will_unpwd_set.py .                                                                            [  7%]
+tests/lib/test_01_zero_length_clientid.py .                                                                      [  7%]
+tests/lib/test_02_subscribe_qos0.py .                                                                            [  8%]
+tests/lib/test_02_subscribe_qos1.py .                                                                            [  9%]
+tests/lib/test_02_subscribe_qos2.py .                                                                            [  9%]
+tests/lib/test_02_unsubscribe.py .                                                                               [ 10%]
+tests/lib/test_03_publish_b2c_qos1.py .                                                                          [ 11%]
+tests/lib/test_03_publish_b2c_qos2.py .                                                                          [ 11%]
+tests/lib/test_03_publish_c2b_qos1_disconnect.py .                                                               [ 12%]
+tests/lib/test_03_publish_c2b_qos2_disconnect.py .                                                               [ 12%]
+tests/lib/test_03_publish_fill_inflight.py x                                                                     [ 13%]
+tests/lib/test_03_publish_helper_qos0.py .                                                                       [ 14%]
+tests/lib/test_03_publish_helper_qos0_v5.py .                                                                    [ 14%]
+tests/lib/test_03_publish_helper_qos1_disconnect.py .                                                            [ 15%]
+tests/lib/test_03_publish_qos0.py .                                                                              [ 15%]
+tests/lib/test_03_publish_qos0_no_payload.py .                                                                   [ 16%]
+tests/lib/test_04_retain_qos0.py .                                                                               [ 17%]
+tests/lib/test_08_ssl_bad_cacert.py .                                                                            [ 17%]
+tests/lib/test_08_ssl_connect_alpn.py .                                                                          [ 18%]
+tests/lib/test_08_ssl_connect_cert_auth.py .                                                                     [ 19%]
+tests/lib/test_08_ssl_connect_cert_auth_pw.py .                                                                  [ 19%]
+tests/lib/test_08_ssl_connect_no_auth.py .                                                                       [ 20%]
+tests/lib/test_08_ssl_fake_cacert.py .                                                                           [ 20%]
+tests/test_client.py ..................................................................                          [ 61%]
+tests/test_matcher.py .................                                                                          [ 71%]
+tests/test_mqttv5.py sssssssssssssssssssss                                                                       [ 84%]
+tests/test_reasoncodes.py ...                                                                                    [ 86%]
+tests/test_websocket_integration.py ..................                                                           [ 97%]
+tests/test_websockets.py ....                                                                                    [100%]
+
+=============================================== short test summary info ================================================
+XFAIL tests/lib/test_03_publish_fill_inflight.py::test_03_publish_fill_inflight
+SKIPPED [21] .venv/lib/python3.14/site-packages/_pytest/unittest.py:523: paho.mqtt.testing not present.
+===================================== 141 passed, 21 skipped, 1 xfailed in 33.90s ======================================
