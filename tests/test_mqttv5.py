@@ -23,6 +23,7 @@ import threading
 import time
 import unittest
 import unittest.mock
+import warnings
 
 import paho.mqtt
 import paho.mqtt.client
@@ -1084,10 +1085,10 @@ class Test(_TestBase):
             laclient.disconnect()
             lacallback.wait_disconnected()
             laclient.loop_stop()
-            raise Exception(
+            warnings.warn(
                 f"Exiting test_client_topic_alias early. Broker does not support Topic alii. {clientTopicAliasMaximum=}",
-                )#    stacklevel=2,
-            #)
+                stacklevel=2,
+            )
             return
 
         laclient.subscribe(topics[0], qos=2)
