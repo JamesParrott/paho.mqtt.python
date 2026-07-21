@@ -23,7 +23,6 @@ import threading
 import time
 import unittest
 import unittest.mock
-import warnings
 
 import paho.mqtt
 import paho.mqtt.client
