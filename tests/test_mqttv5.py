@@ -1081,14 +1081,14 @@ class Test(_TestBase):
         if hasattr(connack["properties"], "TopicAliasMaximum"):
             clientTopicAliasMaximum = connack["properties"].TopicAliasMaximum
 
-        if True: #clientTopicAliasMaximum == 0:
+        if clientTopicAliasMaximum == 0:
             laclient.disconnect()
             lacallback.wait_disconnected()
             laclient.loop_stop()
-            warnings.warn(
+            raise Exception(
                 f"Exiting test_client_topic_alias early. Broker does not support Topic alii. {clientTopicAliasMaximum=}",
-                stacklevel=2,
-            )
+                )#    stacklevel=2,
+            #)
             return
 
         laclient.subscribe(topics[0], qos=2)
@@ -1435,16 +1435,22 @@ class _TestBrokerRebootsMixin:
         laclient, lacallback = self.new_client(f"{clientid} a")
         laclient.connect(host="localhost", port=self._test_broker_port)
         _connack = lacallback.wait_connected()
+        print("laclient Connected", flush=True)
 
 
         publish_properties = Properties(PacketTypes.PUBLISH)
         publish_properties.TopicAlias = 1
+
+
+        laclient.subscribe(topics[0], qos=2)
+        lacallback.wait_subscribed()
+
         laclient.publish(topics[0], b"topic alias 1",
                          self.qos, properties=publish_properties)
 
         for i in range(2,6):
             lacallback.messages.get(timeout=DEFAULT_TIMEOUT)
-            laclient.publish("", f"topic alias {i}".encode("ascii"), self.qos,
+            laclient.publish("", f"topic alias msg {i}".encode("ascii"), self.qos,
                          properties=publish_properties)
 
         # Do not get last message...  ... in QoS >= 1, expect
@@ -1452,9 +1458,13 @@ class _TestBrokerRebootsMixin:
         # i) reconnection
         # ii) publish QoS >= 1 message with no PUBACK to unrecognised alias
         # iii) Broker kicks client
+        print("Rebooting broker...")
         self._reboot_broker()
-        time.sleep(10)
-        laclient.wait_connected()
+        _connack = lacallback.wait_connected()
+
+
+        laclient.subscribe(topics[1], qos=2)
+        lacallback.wait_subscribed()
 
         # Set topic alias to a new topic
         laclient.publish(topics[1], b"topic alias 6",
@@ -1467,6 +1477,7 @@ class _TestBrokerRebootsMixin:
 
         lacallback.messages.get(timeout=DEFAULT_TIMEOUT)
 
+        print("Calling laclient.disconnect...")
         laclient.disconnect()
         lacallback.wait_disconnected()
         laclient.loop_stop()
