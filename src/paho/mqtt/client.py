@@ -2390,8 +2390,6 @@ class Client:
             return MQTTErrorCode.MQTT_ERR_INVAL
 
         self._thread_terminate = True
-        if threading.current_thread() != self._thread:
-            self._thread.join()
 
         return MQTTErrorCode.MQTT_ERR_SUCCESS
 
