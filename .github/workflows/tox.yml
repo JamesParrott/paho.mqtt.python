@@ -10,8 +10,9 @@ jobs:
       max-parallel: 4
       matrix:
         python: ["3.9", "3.10", "3.11", "3.12", "3.13", "3.14"]
+        websockets: ["true", "false"]
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
       - uses: actions/checkout@v4
@@ -29,7 +30,15 @@ jobs:
             setup.py
 
       - run: pip install tox
-      - run: tox -e py
+      
+      - name: "Run tox without websockets"
+        if: ${{ matrix.websockets == 'false' }}
+        run: tox -e py
+
+      - name: "Run tox with websockets installed"
+        if: ${{ matrix.websockets == 'true' }}
+        run: tox -e websockets
+
       - uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
