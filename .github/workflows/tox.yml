@@ -32,12 +32,8 @@ jobs:
       - run: pip install tox
       
       - name: "Run tox without websockets"
-        if: ${{ matrix.websockets == 'false' }}
-        run: tox -e py
+        run: tox -e ${{ matrix.websockets == 'true' && 'websockets' || 'py' }}
 
-      - name: "Run tox with websockets installed"
-        if: ${{ matrix.websockets == 'true' }}
-        run: tox -e websockets
 
       - uses: codecov/codecov-action@v3
         with:
