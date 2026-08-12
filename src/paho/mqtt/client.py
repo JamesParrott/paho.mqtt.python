@@ -1728,7 +1728,7 @@ class Client:
             # Clear sockpairR - only ever a single byte written.
             try:
                 # Read many bytes at once - this allows up to 10000 calls to
-                # publish() inbetween calls to loop().
+                # publish() in between calls to loop().
                 self._sockpairR.recv(10000)
             except BlockingIOError:
                 pass
@@ -1879,7 +1879,7 @@ class Client:
         Requires brokers that support bridge mode.
 
         Under bridge mode, the broker will identify the client as a bridge and
-        not send it's own messages back to it. Hence a subsciption of # is
+        not send it's own messages back to it. Hence a subscription of # is
         possible without message loops. This feature also correctly propagates
         the retain flag on the messages.
 
@@ -2475,7 +2475,7 @@ class Client:
 
     @property
     def on_connect(self) -> CallbackOnConnect | None:
-        """The callback called when the broker reponds to our connection request.
+        """The callback called when the broker responds to our connection request.
 
         Expected signature for callback API version 2::
 
@@ -2815,7 +2815,7 @@ class Client:
 
     @property
     def on_socket_open(self) -> CallbackOnSocket | None:
-        """The callback called just after the socket was opend.
+        """The callback called just after the socket was opened.
 
         This should be used to register the socket to an external event loop for reading.
 
@@ -4784,11 +4784,15 @@ class _ClientConnection_websockets_Wrapper(_WebsocketWrapperBase):
         extra_headers: WebSocketHeaders | None,
         ssl_context: ssl.SSLContext | None = None,
     ):
-        # https://websockets.readthedocs.io/en/stable/reference/sync/client.html#websockets.sync.client.connect
+        # path = None is included in the tests, even though this
+        # is not supported according to the type annotation
         uri = f"ws://{host}:{port}{path or ''}"
-        # To satisfy our Mock testing broker, "chat" is added to the subprotocols 
+
+        # To satisfy our Mock testing broker, "chat" is added to the subprotocols
         # from https://www.iana.org/assignments/websocket/websocket.xml#subprotocol-name
         subprotocols = ["mqtt", "chat"]
+
+        # https://websockets.readthedocs.io/en/stable/reference/sync/client.html#websockets.sync.client.connect
         self.client_conn = websockets_connect( #type: ignore[return-value]
             uri=uri, # overridden by sock below
             sock=socket,

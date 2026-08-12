@@ -341,7 +341,7 @@ publisher example
             print("")
             print("The best solution to avoid race-condition is using the msg_info from publish()")
             print("We could also try using a list of acknowledged mid rather than removing from pending list,")
-            print("but remember that mid could be re-used !")
+            print("but remember that mid could be reused !")
 
     unacked_publish = set()
     mqttc = mqtt.Client(CallbackAPIVersion.VERSION2)
