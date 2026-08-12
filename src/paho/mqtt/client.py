@@ -4798,7 +4798,7 @@ class _ClientConnection_websockets_Wrapper(_WebsocketWrapperBase):
             sock=socket,
             ssl = ssl_context,
             additional_headers = extra_headers, # type: ignore[arg-type]
-            subprotocols = subprotocols, # type: ignore[list-item]
+            subprotocols = subprotocols, # type: ignore[arg-type,list-item]
         )
         super().__init__(socket or self.client_conn.socket, is_ssl, ssl_context)
 
