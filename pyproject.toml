@@ -34,8 +34,7 @@ classifiers = [
     "Topic :: Communications",
     "Topic :: Internet",
 ]
-dependencies = [
-]
+dependencies = []
 
 [project.optional-dependencies]
 proxy = [
