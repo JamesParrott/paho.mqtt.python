@@ -40,7 +40,7 @@ def get_websocket_response(response_headers):
 
 @pytest.mark.skipif(
     websockets_connect is not None,
-    reason="Expects legacy exception: WebsocketConnectionError"
+    reason="Expects WebsocketConnectionError to be raised, which websockets doesn't"
 )
 @pytest.mark.parametrize("proto_ver,proto_name", [
     (client.MQTTv31, "MQIsdp"),
@@ -70,7 +70,7 @@ class TestInvalidWebsocketResponse:
 
 @pytest.mark.skipif(
     websockets_connect is not None,
-    reason="Expects legacy exception: WebsocketConnectionError"
+    reason="Expects WebsocketConnectionError to be raised, which websockets doesn't"
 )
 @pytest.mark.parametrize("proto_ver,proto_name", [
     (client.MQTTv31, "MQIsdp"),
