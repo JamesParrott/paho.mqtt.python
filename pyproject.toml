@@ -43,7 +43,7 @@ proxy = [
 
 [project.urls]
 Homepage = "http://eclipse.org/paho"
-Documentation = "https://eclipse.dev/paho/files/paho.mqtt.python/html/client.html"
+Documentation = "https://eclipse.dev/paho/files/paho.mqtt.python/html/index.html"
 
 [tool.coverage.report]
 exclude_also = [
