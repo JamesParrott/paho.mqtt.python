@@ -17,6 +17,8 @@ class Test_client_function:
         ("#", "/foo/bar"),
         ("/#", "/foo/bar"),
         ("$SYS/bar", "$SYS/bar"),
+        ("sport/#", "sport"),
+        ("/#", "/"),
     ])
     def test_matching(self, sub, topic):
         assert client.topic_matches_sub(sub, topic)
