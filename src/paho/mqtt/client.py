@@ -2391,6 +2391,12 @@ class Client:
 
         self._thread_terminate = True
 
+        with self.lock:
+            thread = self._thread
+
+        if thread is not None:
+            thread.join()
+
         return MQTTErrorCode.MQTT_ERR_SUCCESS
 
     @property
