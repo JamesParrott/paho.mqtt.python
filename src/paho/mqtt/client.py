@@ -35,7 +35,8 @@ import urllib.parse
 import urllib.request
 import uuid
 import warnings
-from typing import TYPE_CHECKING, Any, Callable, Dict, Iterator, List, NamedTuple, Sequence, Tuple, Union, cast, overload
+from collections.abc import Iterator, Sequence
+from typing import TYPE_CHECKING, Any, Callable, NamedTuple, Union, cast, overload
 
 from paho.mqtt.packettypes import PacketTypes
 
@@ -216,7 +217,7 @@ sockpair_data = b"0"
 # * None is converted to a zero-length payload (i.e. b"")
 PayloadType = Union[str, bytes, bytearray, int, float, None]
 
-HTTPHeader = Dict[str, str]
+HTTPHeader = dict[str, str]
 WebSocketHeaders = Union[Callable[[HTTPHeader], HTTPHeader], HTTPHeader]
 
 CleanStartOption = Union[bool, Literal[3]]
@@ -247,8 +248,8 @@ class DisconnectFlags(NamedTuple):
     """
 
 
-CallbackOnConnect_v1_mqtt3 = Callable[["Client", Any, Dict[str, Any], MQTTErrorCode], None]
-CallbackOnConnect_v1_mqtt5 = Callable[["Client", Any, Dict[str, Any], ReasonCode, Union[Properties, None]], None]
+CallbackOnConnect_v1_mqtt3 = Callable[["Client", Any, dict[str, Any], MQTTErrorCode], None]
+CallbackOnConnect_v1_mqtt5 = Callable[["Client", Any, dict[str, Any], ReasonCode, Union[Properties, None]], None]
 CallbackOnConnect_v1 = Union[CallbackOnConnect_v1_mqtt5, CallbackOnConnect_v1_mqtt3]
 CallbackOnConnect_v2 = Callable[["Client", Any, ConnectFlags, ReasonCode, Union[Properties, None]], None]
 CallbackOnConnect = Union[CallbackOnConnect_v1, CallbackOnConnect_v2]
@@ -265,15 +266,15 @@ CallbackOnPublish_v1 = Callable[["Client", Any, int], None]
 CallbackOnPublish_v2 = Callable[["Client", Any, int, ReasonCode, Properties], None]
 CallbackOnPublish = Union[CallbackOnPublish_v1, CallbackOnPublish_v2]
 CallbackOnSocket = Callable[["Client", Any, "SocketLike"], None]
-CallbackOnSubscribe_v1_mqtt3 = Callable[["Client", Any, int, Tuple[int, ...]], None]
-CallbackOnSubscribe_v1_mqtt5 = Callable[["Client", Any, int, List[ReasonCode], Properties], None]
+CallbackOnSubscribe_v1_mqtt3 = Callable[["Client", Any, int, tuple[int, ...]], None]
+CallbackOnSubscribe_v1_mqtt5 = Callable[["Client", Any, int, list[ReasonCode], Properties], None]
 CallbackOnSubscribe_v1 = Union[CallbackOnSubscribe_v1_mqtt3, CallbackOnSubscribe_v1_mqtt5]
-CallbackOnSubscribe_v2 = Callable[["Client", Any, int, List[ReasonCode], Union[Properties, None]], None]
+CallbackOnSubscribe_v2 = Callable[["Client", Any, int, list[ReasonCode], Union[Properties, None]], None]
 CallbackOnSubscribe = Union[CallbackOnSubscribe_v1, CallbackOnSubscribe_v2]
 CallbackOnUnsubscribe_v1_mqtt3 = Callable[["Client", Any, int], None]
-CallbackOnUnsubscribe_v1_mqtt5 = Callable[["Client", Any, int, Properties, Union[ReasonCode, List[ReasonCode]]], None]
+CallbackOnUnsubscribe_v1_mqtt5 = Callable[["Client", Any, int, Properties, Union[ReasonCode, list[ReasonCode]]], None]
 CallbackOnUnsubscribe_v1 = Union[CallbackOnUnsubscribe_v1_mqtt3, CallbackOnUnsubscribe_v1_mqtt5]
-CallbackOnUnsubscribe_v2 = Callable[["Client", Any, int, List[ReasonCode], Union[Properties, None]], None]
+CallbackOnUnsubscribe_v2 = Callable[["Client", Any, int, list[ReasonCode], Union[Properties, None]], None]
 CallbackOnUnsubscribe = Union[CallbackOnUnsubscribe_v1, CallbackOnUnsubscribe_v2]
 
 # This is needed for typing because class Client redefined the name "socket"
